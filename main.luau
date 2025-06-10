@@ -115,3 +115,10 @@ levelRemote:FireServer("Strength") -- ou outro parâmetro correto
 
   end
 end)
+local testButton = Instance.new("TextButton")
+testButton.Size = UDim2.new(1, -20, 0, 50)
+testButton.Position = UDim2.new(0, 10, 0, 10)
+testButton.Text = "Funcionou!"
+testButton.Parent = MainFrame
+repeat wait() until game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+local ScreenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
