@@ -1,3 +1,4 @@
+![1000024100](https://github.com/user-attachments/assets/ef3548ec-0415-4e78-a64c-97f7c774090e)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
