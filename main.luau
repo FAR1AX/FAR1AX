@@ -4,6 +4,7 @@ local character = player.Character or player.CharacterAdded:Wait()
 local root = character:WaitForChild("HumanoidRootPart")
 local UIS = game:GetService("UserInputService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 --// Criar GUI
 local ScreenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
@@ -37,6 +38,9 @@ end
 local autoFarm = false
 local autoLevel = false
 
+--// Remote para auto level (ajuste o nome conforme seu jogo)
+local levelRemote = ReplicatedStorage:WaitForChild("AddPoint") -- Exemplo de nome
+
 --// Função Auto Farm
 local function runAutoFarm()
     spawn(function()
@@ -60,9 +64,8 @@ local function runAutoLevel()
     spawn(function()
         while autoLevel do
             wait(1)
-            local stats = player:FindFirstChild("leaderstats")
-            if stats and stats:FindFirstChild("Strength") then
-                stats.Strength.Value = stats.Strength.Value + 1
+            if levelRemote then
+                levelRemote:FireServer("Strength") -- Parâmetro pode mudar conforme o jogo
             end
         end
     end)
@@ -88,7 +91,9 @@ end)
 local btnTeleport = CreateButton("Teleportar para Starter Island")
 btnTeleport.MouseButton1Click:Connect(function()
     local starterIslandPos = CFrame.new(1037, 17, 1434) -- Ajuste conforme o mapa atual
-    root.CFrame = starterIslandPos
+    if character and root then
+        character:SetPrimaryPartCFrame(starterIslandPos)
+    end
 end)
 
 --// Botão fechar (esconde GUI)
@@ -104,3 +109,6 @@ UIS.InputBegan:Connect(function(input, gameProcessed)
         ScreenGui.Enabled = not ScreenGui.Enabled
     end
 end)
+local levelRemote = ReplicatedStorage:WaitForChild("AddPoint")
+local levelRemote = ReplicatedStorage:WaitForChild("NomeDoRemoteQueVocêEncontrou")
+levelRemote:FireServer("Strength") -- ou outro parâmetro correto
