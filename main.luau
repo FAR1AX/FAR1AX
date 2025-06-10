@@ -109,6 +109,3 @@ UIS.InputBegan:Connect(function(input, gameProcessed)
         ScreenGui.Enabled = not ScreenGui.Enabled
     end
 end)
-local levelRemote = ReplicatedStorage:WaitForChild("AddPoint")
-local levelRemote = ReplicatedStorage:WaitForChild("NomeDoRemoteQueVocêEncontrou")
-levelRemote:FireServer("Strength") -- ou outro parâmetro correto
